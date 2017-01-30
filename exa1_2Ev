@@ -1,0 +1,38 @@
+DWS, 30/01/2017
+Exa1_2Ev
+
+1. Cargar algunos datos en tu sistema en MySQL y Redis.
+   Para ello encárgate de construir y ejecutar el proyecto
+   github paulinohuerta/springLoadDataRedis-MySQL
+
+Hacer en pizarra tabla.
+Mostrar al profe.
+
+1P
+-
+2. paulinohuerta/springmvcSimple
+   Completar el proyecto.
+   mediante url /employee
+     lista de Id de Contact obtenidos desde Redis (estructuras grabadas
+     con proyecto punto 1).
+
+     El usuario selecciona un 'id' de la lista y recibe
+     los datos completos del contacto correspondiente al 'id' seleccionado.
+     nombre-email-address,telephone, porvenientes de MySQL (bd y tabla del
+     proyecto punto1).
+
+4.5P
+-
+3. CodeIgniter.
+   Del proyecto 'news'
+   Obtener del servicio web propio, otros artículos, mismo formato, que los obtenidos de la tabla news del server MySQL, es decir lo normal será recibir del servicio web por ti creado,
+un format JSON de artículos los que tienen título, texto y slug.
+
+3.5P
+-
+4. Poner (punto 2) con uso de postgres
+Mostrar profe
+
+1P
+-
+
