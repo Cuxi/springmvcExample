@@ -23,9 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-    	private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 	
-	private List<String> listId = new ArrayList<String>();
+	private List<String> idList = new ArrayList<String>();
 
 	@Override
 	public List<String> listIdEmployee() {
@@ -33,10 +33,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         String KEY = "Contact"; //Tomado del proyecto springLoadDataRedis
 	    Set<Object> list = redisTemplate.opsForHash().keys(KEY);
 	    
-		ArrayList<String> listId1 = new ArrayList(list);
+		ArrayList<String> idList1 = new ArrayList(list);
 
-	    listId = listId1;
-        return listId;
+	    idList = idList1;
+        return idList;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		String sql = "select name, email, address, telephone from contact where contact_id = ?";
   		
-		contact = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<Contact>(Contact.class));
+		contact = jdbcTemplate.queryForObject(sql, new Object[]{id}, new 			BeanPropertyRowMapper<Contact>(Contact.class));
 
         	return contact;
 	}

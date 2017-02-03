@@ -38,5 +38,29 @@ public class EmployeeController {
     
     return "consulta";
   }
+  /*
+  @RequestMapping("/employee")
+  public String employeeShowList (@ModelAttribute("contact") @Valid Contact contact, BindingResult result) {
+    if(result.hasErrors()) {
+      // show the form again, with the errors
+      return "contact/error";
+	
+    }
+  
+    // validation was successful
+   // employeeService.create(contact);
+    return "redirect:/contact/list";  
+  }
+
+@Override
+public List<String> listIdEmployee(){
+	List<String> list=new ArrayList<String>();
+	Set<Object> set = redisTemplate.opsForHash().keys("Contact");
+
+	for(Object o: set){
+		list.add(o.toString());
+	}
+	return list;
+}*/
 
 }
