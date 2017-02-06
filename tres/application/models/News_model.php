@@ -1,28 +1,40 @@
 <?php
 class News_model extends CI_Model {
 
-        public function __construct()
-        {
-                $this->load->database();
+	var $obj;
+
+        public function __construct(){
+		
+        $this->load->database();
+		$url="http://192.168.114.10/serviceNews.php";
+		$respuesta=file_get_contents($url);
+		$this->obj=json_decode($respuesta, true);
         }
 	
 	public function get_news($slug = FALSE)
 	{
-
-		$redis=new Redis();
-        $redis->pconnect('127.0.0.1',6379);
-
 		if ($slug === FALSE)
 		{
-		        $query = $this->redis->hgetall('news');
-		        header('Content-type: application/json');
-        		return json_encode($query);
+			$query=$this->db->get("news");
+			$ar= $query->result_array();
+		/*	foreach($this->obj as $k=>$v){
+				array_push($ar,$v);
+			}*/
+			return $ar;
 		}
 
-		$query = $this->redis->hgetall('news');
-		header('Content-type: application/json');
-        return json_encode($query);
-		//return $query->row_array();
+		$query = $this->db->get_where('news', array('slug'=>$slug));
+		//header('Content-type: application/json');
+        	//return json_encode($query);
+		if(empty($query->row_array())){
+			//pertenece a un artículo obtenido desde el servicio web
+			foreach($this->obj as $k=>$v){
+				if($v['slug']==$slug){
+					return $v;				
+				}
+			}
+		}
+		return $query->row_array();
 	}
 
 
