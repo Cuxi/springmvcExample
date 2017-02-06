@@ -1,2 +1,0 @@
-<p>Delete ko!
-</p>
