@@ -2,10 +2,12 @@
 
 Instalación
 Para poder desarrollar esta apliación necesitamos el uso de:
+
 -Maven
+
 -MySQL
 
-
+-Redis
 
 Desarrollo
 
