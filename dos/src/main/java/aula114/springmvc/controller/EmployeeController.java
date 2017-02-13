@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import aula114.springmvc.service.EmployeeService;
@@ -34,26 +35,25 @@ public class EmployeeController {
     	return "consulta";
   }
 
-  @RequestMapping("/delete")
-  public String delete (Model model, @RequestParam(value = "clave", required = false) String id){
+  @RequestMapping(value="/delete",method = RequestMethod.POST)
+  public String delete (Model model, @ModelAttribute("contactDelete") String id){
 
 	int c=employeeService.delete(id);
-	Contact contact = new Contact();
 
 	model.addAttribute("filas",c);
 
 	return "deleteOK";
   }
 
-  @RequestMapping("/insert")
-  public String insertar(Model model,@RequestParam(value="name") String name,@RequestParam(value="address") String address,@RequestParam(value="email") String email,@RequestParam(value="telephone") String telephone){
-	Contact contact=new Contact();
-	contact.setName(name);
-	contact.setAddress(address);
-	contact.setEmail(email);
-	contact.setTelephone(telephone);
+  @RequestMapping(value="/insert",method = RequestMethod.POST)
+  public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
+	Contact contact1=new Contact();
+	contact1.setName(contact.getName());
+	contact1.setAddress(contact.getAddress());
+	contact1.setEmail(contact.getEmail());
+	contact1.setTelephone(contact.getTelephone());
 
-	int c = employeeService.insert(contact);
+	int c = employeeService.insert(contact1);
 	model.addAttribute("resultado", c);
 
 	return "insertOK";
@@ -61,16 +61,16 @@ public class EmployeeController {
   }
 
 
-  @RequestMapping("/editar/")
-  public String editar (Model model,@RequestParam(value="id") String id,@RequestParam(value="name", required=false) String name,@RequestParam(value="address", required=false) String address,@RequestParam(value="email", required=false) String email,@RequestParam(value="telephone", required=false) String telephone){
+  @RequestMapping(value="/editar",method = RequestMethod.POST)
+  public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
 
-	Contact contact=new Contact();
-	if(name!=null){contact.setName(name);}
-	if(address!=null){contact.setAddress(address);}
-	if(email!=null){contact.setEmail(email);}
-	if(telephone!=null){contact.setTelephone(telephone);}
+	Contact contact1=new Contact();
+	if(contact.getName()!=null){contact1.setName(contact.getName());}
+	if(contact.getAddress()!=null){contact1.setAddress(contact.getAddress());}
+	if(contact.getEmail()!=null){contact1.setEmail(contact.getEmail());}
+	if(contact.getTelephone()!=null){contact1.setTelephone(contact.getTelephone());}
 
-	int c = employeeService.insert(contact);
+	int c = employeeService.insert(contact1);
 	model.addAttribute("resultado", c);
 
 	return "updateOK";
