@@ -7,7 +7,7 @@
 <body>
 	<h1>Crear contacto:</h1>
 	
-	<form:form method="POST" action="/insert" commandName="contactInsert">
+	<form:form method="POST" action="/insert" commandName="contactForm">
 		<table>
 
 			<tr>

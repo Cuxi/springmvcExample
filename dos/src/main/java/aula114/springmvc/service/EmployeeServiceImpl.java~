@@ -53,7 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int insert(Contact c){
 		c=new Contact();
 
-		String SQL = "insert into contact (name, email, address, telephone) values (?, ?, ?, ?)";
+		String SQL = "insert into Contact (name, email, address, telephone) values (?, ?, ?, ?)";
 		int fila=jdbcTemplate.update( SQL, new Object[]{c.getName(),c.getEmail(),c.getAddress(),c.getTelephone()});
 
 		return fila;

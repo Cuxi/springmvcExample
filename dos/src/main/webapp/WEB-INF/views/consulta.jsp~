@@ -4,7 +4,7 @@
 
 	<h1>Contacts</h1>
 	<p>
-	<select name="clave" >
+	<select name="id" >
 	<option value="">Selecciona uno</option>
 	<c:forEach items="${contact}" var="contact">
 		<option value="/show/${contact}">${contact}</option>

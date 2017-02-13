@@ -21,21 +21,21 @@ public class EmployeeController {
   @Autowired
   private EmployeeService employeeService;
 
-  @RequestMapping("/show/{clave}")
+  @RequestMapping(value="/show/{clave}")
   public String show(Model model, @PathVariable String clave){
 	model.addAttribute("aContact", employeeService.show(clave));
 
 	return "list";
   }
    
-  @RequestMapping("/employee")
+  @RequestMapping(value="/employee")
   public String consulta(Model model) {
     	model.addAttribute("contact", employeeService.listIdEmployee());
     
     	return "consulta";
   }
 
-  @RequestMapping("/delete")
+  @RequestMapping(value="/delete")
   public String delete (Model model, @ModelAttribute("contactDelete") String id){
 
 	int c=employeeService.delete(id);
@@ -45,7 +45,7 @@ public class EmployeeController {
 	return "deleteOK";
   }
 
-  @RequestMapping("/insert")
+  @RequestMapping(value="/insert")
   public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
 	Contact contact1=new Contact();
 	contact1.setName(contact.getName());
@@ -61,7 +61,7 @@ public class EmployeeController {
   }
 
 
-  @RequestMapping("/editar")
+  @RequestMapping(value="/editar")
   public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
 
 	Contact contact1=new Contact();
