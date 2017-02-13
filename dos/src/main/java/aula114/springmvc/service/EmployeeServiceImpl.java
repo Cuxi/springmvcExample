@@ -19,8 +19,8 @@ import aula114.springmvc.domain.Contact;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    	@Autowired
+    	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
     	private RedisTemplate<String, String> redisTemplate;
@@ -30,13 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<String> listIdEmployee() {
         //  Se obtiene desde Redis
-        String KEY = "Contact"; //Tomado del proyecto springLoadDataRedis
-	    Set<Object> list = redisTemplate.opsForHash().keys(KEY);
+        	String KEY = "Contact"; //Tomado del proyecto springLoadDataRedis
+	    	Set<Object> list = redisTemplate.opsForHash().keys(KEY);
 	    
-		ArrayList<String> listId1 = new ArrayList(list);
+		List<String> listId1 = new ArrayList(list);
 
-	    listId = listId1;
-        return listId;
+	    	listId = listId1;
+        	return listId;
 	}
 
 	@Override
@@ -50,6 +50,33 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         	return contact;
 	}
+	public int insert(Contact c){
+		c=new Contact();
 
+		String SQL = "insert into Contact (name, email, address, telephone) values (?, ?, ?, ?)";
+		int fila=jdbcTemplate.update( SQL, new Object[]{c.getName(),c.getEmail(),c.getAddress(),c.getTelephone()});
+
+		return fila;
+	}
+
+	public int delete(String id){
+		
+		Contact c=show(id);	
+	
+		String sql="delete from contact where contact_id=?";
+		int fila=jdbcTemplate.update(sql,id);
+
+		return fila;
+	}
+
+	public int edit(Contact c,String id){
+		
+		c=new Contact();
+
+		String SQL = "update contact set name = ?,email=?,address=?,telephone=? where id = ?";
+		int fila=jdbcTemplateObject.update( SQL, new Object[]{c.getName(),c.getEmail(),c.getAddress(),c.getTelephone(), id} );
+
+		return fila;
+	}
 
 }
