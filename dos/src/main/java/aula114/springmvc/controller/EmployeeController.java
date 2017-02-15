@@ -22,17 +22,19 @@ public class EmployeeController {
   private EmployeeService employeeService;
 
   @RequestMapping(value="/show/{clave}", method = RequestMethod.GET)
-  public String show(Model model, @PathVariable String clave){
-	model.addAttribute("aContact", employeeService.show(clave));
-
-	return "list";
+  public String show(Model model, @RequestParam(value = "clave", required = false) String clave){
+	Contact contact=new Contact();
+	contact=employeeService.show(clave);
+	model.addAttribute("contact", contact);
+	System.out.println("--------------------------");
+	return "consulta";
   }
    
   @RequestMapping(value="/employee", method = RequestMethod.GET)
   public String consulta(Model model) {
     	model.addAttribute("contact", employeeService.listIdEmployee());
         System.out.println("++++++++++++++++++++");
-    	return "consulta";
+    	return "list";
   }
 
   @RequestMapping(value="/delete", method = RequestMethod.POST)
