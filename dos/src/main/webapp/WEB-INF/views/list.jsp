@@ -6,7 +6,7 @@
 	
 	
 		<p>
-			${contact.name}: $${contact.email}: $${contact.address}: $${contact.telephone}
+			${contact.name}: ${contact.email}: ${contact.address}: ${contact.telephone}
 		</p>
 
 
