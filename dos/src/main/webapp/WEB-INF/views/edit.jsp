@@ -8,18 +8,18 @@
 <body>
 	<h1>Editar contacto:</h1>
 	
-	<form:form method="POST" action="/editar/" commandName="contactEdit">
+	<form:form method="POST" action="/editar/" modelAttribute="contactEdit">
 		<table>
 			<tr>
-				<td style="border: solid 1px"><form:input hidden path="id" value="${contact.id}">
+				<td style="border: solid 1px"><input hidden name="id" value="${contact.id}">
 				</input></td>
-				<td style="border: solid 1px"><form:input path="name">
+				<td style="border: solid 1px"><input name="name">
 				</input></td>
-				<td style="border: solid 1px"><form:input path="address">
+				<td style="border: solid 1px"><input name="address">
 				</input></td>
-				<td style="border: solid 1px"><form:input path="email">
+				<td style="border: solid 1px"><input name="email">
 				</input></td>
-				<td style="border: solid 1px"><form:input path="telephone">
+				<td style="border: solid 1px"><input name="telephone">
 				</input></td>
 			</tr>
 		</table>

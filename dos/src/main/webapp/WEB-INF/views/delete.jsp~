@@ -8,7 +8,7 @@
 <body>
 	<h1>Crear contacto:</h1>
 	
-	<form:form method="POST" action="/delete" commandName="contactDelete">
+	<form:form method="POST" action="/delete" modelAttribute="contactDelete">
 		<table>
 
 			<tr>

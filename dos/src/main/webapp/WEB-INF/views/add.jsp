@@ -8,24 +8,24 @@
 <body>
 	<h1>Crear contacto:</h1>
 	
-	<form:form method="POST" action="/insert" commandName="contactInsert">
+	<form:form method="POST" action="/insert" modelAttribute="contactInsert">
 		<table>
 
 			<tr>
-				<td><form:label path="name">Name</form:label></td>
-				<td><form:input path="name" /></td>
+				<td><label name="name">Name<label></td>
+				<td><input name="name" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="address">Address</form:label></td>
-				<td><form:input path="address" /></td>
+				<td><label name="address">Address</label></td>
+				<td><input name="address" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="email">Email</form:label></td>
-				<td><form:input path="email" /></td>
+				<td><label name="email">Email</label></td>
+				<td><input name="email" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="telephone">Telephone</form:label></td>
-				<td><form:input path="telephone" /></td>
+				<td><label path="telephone">Telephone</label></td>
+				<td><input name="telephone" /></td>
 			</tr>
 			<tr>
 				<td colspan="2">

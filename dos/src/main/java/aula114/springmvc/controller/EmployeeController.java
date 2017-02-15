@@ -35,7 +35,7 @@ public class EmployeeController {
     	return "consulta";
   }
 
-  @RequestMapping(value="/delete", method = RequestMethod.GET)
+  @RequestMapping(value="/delete", method = RequestMethod.POST)
   public String delete (Model model, @ModelAttribute("contactDelete") String id){
 
 	int c=employeeService.delete(id);
@@ -50,15 +50,10 @@ public class EmployeeController {
 	return "add";
   }
 
-  @RequestMapping(value="/insert", method = RequestMethod.GET)
+  @RequestMapping(value="/insert", method = RequestMethod.POST)
   public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
-	Contact contact1=new Contact();
-	contact1.setName(contact.getName());
-	contact1.setAddress(contact.getAddress());
-	contact1.setEmail(contact.getEmail());
-	contact1.setTelephone(contact.getTelephone());
 
-	int c = employeeService.insert(contact1);
+	int c = employeeService.insert(contact);
 	model.addAttribute("resultado", c);
 
 	return "updateOK";
@@ -71,7 +66,7 @@ public class EmployeeController {
   }
 
 
-  @RequestMapping(value="/editar", method = RequestMethod.GET)
+  @RequestMapping(value="/editar", method = RequestMethod.POST)
   public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
 
 	Contact contact1=new Contact();

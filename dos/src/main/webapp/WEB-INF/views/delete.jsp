@@ -8,12 +8,12 @@
 <body>
 	<h1>Crear contacto:</h1>
 	
-	<form:form method="POST" action="/delete" commandName="contactDelete">
+	<form:form method="POST" action="/delete" modelAttribute="contactDelete">
 		<table>
 
 			<tr>
-				<td><form:label path="id">id</form:label></td>
-				<td><form:input path="id" /></td>
+				<td><label name="id">id</form:label></td>
+				<td><input name="id" /></td>
 			</tr>
 			<tr>
 				<td colspan="2">
