@@ -51,10 +51,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         	return contact;
 	}
 	public int insert(Contact c){
-		c=new Contact();
-
+		System.out.println(c.getName()+c.getEmail()+c.getAddress()+c.getTelephone());
 		String SQL = "insert into contact (name, email, address, telephone) values (?, ?, ?, ?)";
 		int fila=jdbcTemplate.update( SQL, new Object[]{c.getName(),c.getEmail(),c.getAddress(),c.getTelephone()});
+		System.out.println(SQL);
+		System.out.println(fila);
 
 		return fila;
 	}

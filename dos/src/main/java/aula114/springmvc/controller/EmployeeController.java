@@ -36,7 +36,8 @@ public class EmployeeController {
   }
 
   @RequestMapping(value="/delete", method = RequestMethod.POST)
-  public String delete (Model model, @ModelAttribute("contactDelete") String id){
+  public String delete (Model model, @RequestParam(value = "id", required = false) String id){
+//  public String delete (Model model, @ModelAttribute("contactDelete") String id){
 
 	int c=employeeService.delete(id);
 
@@ -51,7 +52,8 @@ public class EmployeeController {
   }
 
   @RequestMapping(value="/insert", method = RequestMethod.POST)
-  public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
+//  public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
+  public String insertar(Model model,@ModelAttribute Contact contact){
 
 	int c = employeeService.insert(contact);
 	model.addAttribute("resultado", c);
@@ -67,15 +69,20 @@ public class EmployeeController {
 
 
   @RequestMapping(value="/editar", method = RequestMethod.POST)
-  public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
+ // public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
+  public String editar (Model model,
+		@RequestParam(value="name", required=false) String name,
+		@RequestParam(value="address", required=false) String address,
+		@RequestParam(value="email", required=false) String email,
+		@RequestParam(value="telephone", required=false) String telephone){
 
-	Contact contact1=new Contact();
-	if(contact.getName()!=null){contact1.setName(contact.getName());}
-	if(contact.getAddress()!=null){contact1.setAddress(contact.getAddress());}
-	if(contact.getEmail()!=null){contact1.setEmail(contact.getEmail());}
-	if(contact.getTelephone()!=null){contact1.setTelephone(contact.getTelephone());}
+	Contact contact=new Contact();
+	if(name!=null){contact.setName(name);}
+	if(address!=null){contact.setAddress(address);}
+	if(email!=null){contact.setEmail(email);}
+	if(telephone!=null){contact.setTelephone(telephone);}
 
-	int c = employeeService.insert(contact1);
+	int c = employeeService.insert(contact);
 	model.addAttribute("resultado", c);
 
 	return "updateOK";

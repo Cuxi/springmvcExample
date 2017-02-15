@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,7 +8,7 @@
 <body>
 	<h1>Editar contacto:</h1>
 	
-	<form:form method="POST" action="/editar/" modelAttribute="contactEdit">
+	<form method="POST" action="/editar" >
 		<table>
 			<tr>
 				<td style="border: solid 1px"><input hidden name="id" value="${contact.id}">
@@ -25,6 +25,6 @@
 		</table>
 		<input type="submit" id="send" value="Aceptar">
 		<input type="submit" id="cancel" value="Cancelar">
-	</form:form>
+	</form>
 </body>
 </html> 

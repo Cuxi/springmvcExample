@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,7 +8,7 @@
 <body>
 	<h1>Crear contacto:</h1>
 	
-	<form:form method="POST" action="/insert" modelAttribute="contactInsert">
+	<form method="POST" action="/insert">
 		<table>
 
 			<tr>
