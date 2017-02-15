@@ -74,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		c=new Contact();
 
 		String SQL = "update contact set name = ?,email=?,address=?,telephone=? where id = ?";
-		int fila=jdbcTemplate.update( SQL, new Object[]{c.getName(),c.getEmail(),c.getAddress(),c.getTelephone(), id} );
+jdbcTemplateObject.update( SQL, new Object[]{c.getName(),c.getEmail(),c.getAddress(),c.getTelephone(), id} );
 
 		return fila;
 	}

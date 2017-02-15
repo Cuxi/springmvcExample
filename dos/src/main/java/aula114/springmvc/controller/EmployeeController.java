@@ -21,21 +21,21 @@ public class EmployeeController {
   @Autowired
   private EmployeeService employeeService;
 
-  @RequestMapping("/show/{clave}")
+  @RequestMapping(value="/show/{clave}", method = RequestMethod.GET)
   public String show(Model model, @PathVariable String clave){
 	model.addAttribute("aContact", employeeService.show(clave));
 
 	return "list";
   }
    
-  @RequestMapping("/employee")
+  @RequestMapping(value="/employee", method = RequestMethod.GET)
   public String consulta(Model model) {
     	model.addAttribute("contact", employeeService.listIdEmployee());
-    
+        System.out.println("++++++++++++++++++++");
     	return "consulta";
   }
 
-  @RequestMapping("/delete")
+  @RequestMapping(value="/delete", method = RequestMethod.GET)
   public String delete (Model model, @ModelAttribute("contactDelete") String id){
 
 	int c=employeeService.delete(id);
@@ -45,7 +45,12 @@ public class EmployeeController {
 	return "deleteOK";
   }
 
-  @RequestMapping("/insert")
+  @RequestMapping("/add")
+  public String cargaInsertar (Model model){
+	return "add";
+  }
+
+  @RequestMapping(value="/insert", method = RequestMethod.GET)
   public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
 	Contact contact1=new Contact();
 	contact1.setName(contact.getName());
@@ -56,12 +61,17 @@ public class EmployeeController {
 	int c = employeeService.insert(contact1);
 	model.addAttribute("resultado", c);
 
-	return "insertOK";
+	return "updateOK";
 	
   }
 
+  @RequestMapping("/edit")
+  public String cargaEditar (Model model){
+	return "edit";
+  }
 
-  @RequestMapping("/editar")
+
+  @RequestMapping(value="/editar", method = RequestMethod.GET)
   public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
 
 	Contact contact1=new Contact();
