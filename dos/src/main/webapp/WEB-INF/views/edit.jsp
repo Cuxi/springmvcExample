@@ -11,7 +11,7 @@
 	<form method="POST" action="/editar" >
 		<table>
 			<tr>
-				<td style="border: solid 1px"><input hidden name="id" value="${contact.id}">
+				<td style="border: solid 1px"><input name="id" value="${contact.id}">
 				</input></td>
 				<td style="border: solid 1px"><input name="name">
 				</input></td>

@@ -21,8 +21,8 @@ public class EmployeeController {
   @Autowired
   private EmployeeService employeeService;
 
-  @RequestMapping(value="/show/{clave}", method = RequestMethod.GET)
-  public String show(Model model, @RequestParam(value = "clave", required = false) String clave){
+  @RequestMapping(value="/show", method = RequestMethod.POST)
+  public String show(Model model, @RequestParam("clave") String clave){
 	Contact contact=new Contact();
 	contact=employeeService.show(clave);
 	model.addAttribute("contact", contact);
@@ -37,15 +37,20 @@ public class EmployeeController {
     	return "list";
   }
 
+  @RequestMapping("/eliminar")
+  public String cargaEliminar (Model model){
+	return "delete";
+  }
+
   @RequestMapping(value="/delete", method = RequestMethod.POST)
   public String delete (Model model, @RequestParam(value = "id", required = false) String id){
-//  public String delete (Model model, @ModelAttribute("contactDelete") String id){
-
-	int c=employeeService.delete(id);
-
-	model.addAttribute("filas",c);
-
-	return "deleteOK";
+	if(id!=null){
+		int c=employeeService.delete(id);
+		model.addAttribute("filas",c);
+		return "deleteOK";
+	}else{
+		return "delete";	
+	}
   }
 
   @RequestMapping("/add")
@@ -54,13 +59,15 @@ public class EmployeeController {
   }
 
   @RequestMapping(value="/insert", method = RequestMethod.POST)
-//  public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
   public String insertar(Model model,@ModelAttribute Contact contact){
+	if(contact!=null){
+		int c = employeeService.insert(contact);
+		model.addAttribute("resultado", c);
 
-	int c = employeeService.insert(contact);
-	model.addAttribute("resultado", c);
-
-	return "updateOK";
+		return "updateOK";
+	}else{
+		return "add";
+	}
 	
   }
 
@@ -71,23 +78,27 @@ public class EmployeeController {
 
 
   @RequestMapping(value="/editar", method = RequestMethod.POST)
- // public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
   public String editar (Model model,
+		@RequestParam(value="id") String id,
 		@RequestParam(value="name", required=false) String name,
 		@RequestParam(value="address", required=false) String address,
 		@RequestParam(value="email", required=false) String email,
 		@RequestParam(value="telephone", required=false) String telephone){
+	if(id==null){
+		Contact contact=new Contact();
+		if(name!=null){contact.setName(name);}
+		if(address!=null){contact.setAddress(address);}
+		if(email!=null){contact.setEmail(email);}
+		if(telephone!=null){contact.setTelephone(telephone);}
 
-	Contact contact=new Contact();
-	if(name!=null){contact.setName(name);}
-	if(address!=null){contact.setAddress(address);}
-	if(email!=null){contact.setEmail(email);}
-	if(telephone!=null){contact.setTelephone(telephone);}
+		int c = employeeService.insert(contact);
+		model.addAttribute("resultado", c);
 
-	int c = employeeService.insert(contact);
-	model.addAttribute("resultado", c);
+		return "updateOK";	
+	}else{
+		return "edit";
+	}
 
-	return "updateOK";
   }
 
 }
